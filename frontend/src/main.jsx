@@ -6,7 +6,7 @@ import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      
+      <Route index element={<h1>This is About us</h1>} />
     </Route>
   )
 );
