@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import BookCard from '../../components/BookCard.jsx'
 import {getImageUrl} from '../../utils/getImgURL.js'
 
 // Import Swiper React components
@@ -11,13 +10,12 @@ import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import BookCard from '../../components/BookCard.jsx';
 
 const categories = ["Choose a genre", "Business","Fiction", "Horror", "Adventure"]
 
-const TopSeller = () => {
+const Recommened = () => {
     const [books, setBooks] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState("Choose a genre");
-    
 
     useEffect(()=>{
         fetch('book.json')
@@ -25,20 +23,10 @@ const TopSeller = () => {
         .then(data=>setBooks(data))
     })
     
-    const filteredBooks = selectedCategory === "Choose a genre" ? books : books.filter(book=> book.category === selectedCategory.toLocaleLowerCase())
-
   return (
-    <div className='py-10'>
-        <h2 className='text-3xl font-semibold mb-6'>Top Sellers</h2>
-        <div className='mb-8 flex items-center'>
-            {/* categories filter */}
-            <select name="category" id="category" className='border bg-[#e8e8e8] border-gray-300 rounded-md py-2 px-4 focus:outline-none'>
-                {categories.map((item, index)=>(
-                    <option key={index} value={item}>{item}</option>
-                ))} 
-            </select>
-        </div>
-        <Swiper
+    <div>
+         <h2 className='text-3xl font-semibold mb-6'>Recommened for you</h2>
+         <Swiper
         slidesPerView={1}
         spaceBetween={15}
         navigation={true}
@@ -64,7 +52,7 @@ const TopSeller = () => {
         modules={[Pagination, Navigation]}
         className="mySwiper"
       >
-        {filteredBooks.length > 0 && filteredBooks.map((book, index)=>(
+        {books.length > 0 && books.slice(3,10).map((book, index)=>(
             <SwiperSlide
             key={book._id}
             >
@@ -85,4 +73,4 @@ const TopSeller = () => {
   )
 }
 
-export default TopSeller;
+export default Recommened;
