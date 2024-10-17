@@ -33,6 +33,14 @@ const bookValidatorRule = {
       .toFloat(),
   ],
   getAllBooks: [],
+  getBook: [
+    param("id")
+      .isMongoId()
+      .withMessage("Invalid book ID")
+      .notEmpty()
+      .withMessage("book is required")
+      .escape(),
+  ],
 };
 
 export { bookValidatorRule };

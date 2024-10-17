@@ -26,6 +26,22 @@ class BookService {
       throw { error };
     }
   }
+
+  async get(bookId){
+    try {
+      console.log(bookId);
+      const book = await this.bookRepository.getById(bookId);
+      if (!book) {
+        throw new Error("Book not found with id: " + id);
+      }
+      
+      return book;
+    } catch (error) {
+      console.log("something wrong at services layer");
+      console.log(error);
+      throw { error };
+    }
+  }
 }
 
 export { BookService };
