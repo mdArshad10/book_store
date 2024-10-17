@@ -1,11 +1,14 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {FiShoppingCart} from 'react-icons/fi';
+import {useDispatch} from "react-redux"
 
 
 const BookCard = ({id, title="book Title", description="Book Description", price=80, image, comparePrice=100}) => {
 
-  const addToCartHandler = (e) =>{
+  const dispatch = useDispatch();
+
+  const addToCartHandler = (product) =>{
     console.log('add to the cart');
   }
 
