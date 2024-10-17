@@ -1,6 +1,8 @@
 import { app } from "./app.js";
-const port = 3000;
+import { PORT } from "./constant.js";
+import { dbConnect } from "./config/db.js";
 
-app.listen(port,async ()=>{
-    console.log(`the server is connected at ${port}`);
-})
+app.listen(PORT, async () => {
+  await dbConnect();
+  console.log(`the server is connected at ${PORT}`);
+});
