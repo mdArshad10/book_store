@@ -32,6 +32,7 @@ const bookValidatorRule = {
       .escape()
       .toFloat(),
   ],
+  getAllBooks: [],
 };
 
 export { bookValidatorRule };

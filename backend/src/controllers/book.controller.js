@@ -26,4 +26,28 @@ const createBook = async (req, res, next) => {
   }
 };
 
-export { createBook };
+// @DESCRIPTION: get all books
+// @METHOD: [GET]   /api/v1/books/
+// @ACCESS: public
+const getAllBooks = async (req, res, next) => {
+  try {
+    const books = await bookService.getAll();
+    return res.status(StatusCodes.OK).json({
+      success: true,
+      message: "You get all books",
+      data: books,
+      err: null,
+    });
+  } catch (error) {
+    console.log("something wrong with control layer");
+
+    return res.status(StatusCodes.BAD_REQUEST).json({
+      success: false,
+      message: "something wrong to get all books",
+      data: null,
+      err: error,
+    });
+  }
+};
+
+export { createBook, getAllBooks };

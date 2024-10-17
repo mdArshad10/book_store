@@ -15,6 +15,17 @@ class BookService {
       throw { error };
     }
   }
+
+  async getAll(){
+    try {
+      const books = await this.bookRepository.getAll();
+      return books
+    } catch (error) {
+      console.log("something wrong at services layer");
+      console.log(error);
+      throw { error };
+    }
+  }
 }
 
 export { BookService };

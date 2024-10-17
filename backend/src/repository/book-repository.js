@@ -12,6 +12,17 @@ class BookRepository {
       throw { error };
     }
   }
+
+  async getAll(){
+    try {
+      const books = await Book.find({});
+      return books;
+    } catch (error) {
+      console.log("something wrong with book repository layer");
+      console.log(error);
+      throw { error };
+    }
+  }
 }
 
 export { BookRepository };
