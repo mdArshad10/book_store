@@ -77,7 +77,7 @@ const getBook = async(req,res,next)=>{
 }
 
 // @DESCRIPTION: update book details through book id
-// @METHOD: [GET]   /api/v1/books/edit/:id
+// @METHOD: [PUT]   /api/v1/books/edit/:id
 // @ACCESS: private/Admin
 const updateBook = async(req,res,next)=> {
 try {
@@ -102,4 +102,28 @@ try {
 }
 };
 
-export { createBook, getAllBooks, getBook, updateBook };
+// @DESCRIPTION: delete the book through book id
+// @METHOD: [DELETE]   /api/v1/books/:id
+// @ACCESS: private/Admin
+const deleteBook = async(req,res,next)=> {
+  try {
+    const {id} = req.params;
+     await bookService.delete(id);
+     return res.status(StatusCodes.OK).json({
+       success: true,
+       message: "book delete successfully",
+       data: null,
+       err: null,
+     });
+  } catch (error) {
+     console.log(error);
+     return res.status(StatusCodes.BAD_REQUEST).json({
+       success: false,
+       message: "something wrong with delete book",
+       data: null,
+       err: error,
+     });
+  }
+}
+
+export { createBook, getAllBooks, getBook, updateBook, deleteBook };

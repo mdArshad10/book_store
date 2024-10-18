@@ -49,6 +49,17 @@ class BookRepository {
       throw { error };
     }
   }
+
+  async deleted(bookId){
+    try {
+      const book = await Book.findByIdAndDelete(bookId);
+      console.log(book);
+      return book;
+    } catch (error) {
+      console.log({ error });
+      throw { error };
+    }
+  }
 }
 
 export { BookRepository };

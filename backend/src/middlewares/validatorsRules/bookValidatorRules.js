@@ -41,7 +41,16 @@ const bookValidatorRule = {
       .withMessage("book is required")
       .escape(),
   ],
+  // TODO: CHECK FOR MORE FILED TO BE UPDATED
   updateBook: [
+    param("id")
+      .isMongoId()
+      .withMessage("Invalid book ID")
+      .notEmpty()
+      .withMessage("book is required")
+      .escape(),
+  ],
+  deleteBook: [
     param("id")
       .isMongoId()
       .withMessage("Invalid book ID")

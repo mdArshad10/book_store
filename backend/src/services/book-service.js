@@ -45,12 +45,29 @@ class BookService {
   async update(bookId, data) {
     try {
       console.log(bookId);
-      const book = await this.bookRepository.updated(bookId,data);
+      const book = await this.bookRepository.updated(bookId, data);
       if (!book) {
         throw new Error("Book not found with id: " + id);
       }
 
       return book;
+    } catch (error) {
+      console.log("something wrong at services layer");
+      console.log(error);
+      throw { error };
+    }
+  }
+
+  async delete(bookId) {
+    try {
+      const response = await this.bookRepository.deleted(bookId);
+      console.log("the response is ", response);
+
+      if (!response) {
+        throw new Error("Book not found with id: " + id);
+      }
+
+      return true;
     } catch (error) {
       console.log("something wrong at services layer");
       console.log(error);
