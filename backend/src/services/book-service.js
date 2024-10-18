@@ -63,6 +63,7 @@ class BookService {
       const response = await this.bookRepository.deleted(bookId);
       console.log("the response is ", response);
 
+      // TODO: yeh work kar raha hai ki yeh check karna hai
       if (!response) {
         throw new Error("Book not found with id: " + id);
       }
