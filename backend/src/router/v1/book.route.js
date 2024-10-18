@@ -5,6 +5,7 @@ import {
   createBook,
   getAllBooks,
   getBook,
+  updateBook,
 } from "../../controllers/book.controller.js";
 
 const router = Router();
@@ -19,5 +20,8 @@ router.route("/:id").get(bookValidatorRule.getBook, validate, getBook);
 
 // get all book
 router.route("/").get(bookValidatorRule.getAllBooks, validate, getAllBooks);
+
+// update the book
+router.route('/edit/:id').put(bookValidatorRule.updateBook, validate, updateBook);
 
 export default router;

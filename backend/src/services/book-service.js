@@ -16,10 +16,10 @@ class BookService {
     }
   }
 
-  async getAll(){
+  async getAll() {
     try {
       const books = await this.bookRepository.getAll();
-      return books
+      return books;
     } catch (error) {
       console.log("something wrong at services layer");
       console.log(error);
@@ -27,14 +27,29 @@ class BookService {
     }
   }
 
-  async get(bookId){
+  async get(bookId) {
     try {
       console.log(bookId);
       const book = await this.bookRepository.getById(bookId);
       if (!book) {
         throw new Error("Book not found with id: " + id);
       }
-      
+      return book;
+    } catch (error) {
+      console.log("something wrong at services layer");
+      console.log(error);
+      throw { error };
+    }
+  }
+
+  async update(bookId, data) {
+    try {
+      console.log(bookId);
+      const book = await this.bookRepository.updated(bookId,data);
+      if (!book) {
+        throw new Error("Book not found with id: " + id);
+      }
+
       return book;
     } catch (error) {
       console.log("something wrong at services layer");

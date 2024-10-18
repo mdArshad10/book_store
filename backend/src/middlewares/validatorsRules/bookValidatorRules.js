@@ -41,6 +41,14 @@ const bookValidatorRule = {
       .withMessage("book is required")
       .escape(),
   ],
+  updateBook: [
+    param("id")
+      .isMongoId()
+      .withMessage("Invalid book ID")
+      .notEmpty()
+      .withMessage("book is required")
+      .escape(),
+  ],
 };
 
 export { bookValidatorRule };

@@ -76,4 +76,30 @@ const getBook = async(req,res,next)=>{
   }
 }
 
-export { createBook, getAllBooks, getBook };
+// @DESCRIPTION: update book details through book id
+// @METHOD: [GET]   /api/v1/books/edit/:id
+// @ACCESS: private/Admin
+const updateBook = async(req,res,next)=> {
+try {
+  const { id } = req.params;
+
+  const book = await bookService.update(id);
+  return res.status(StatusCodes.OK).json({
+    success: true,
+    message: "book updated successfully",
+    data: book,
+    err: null,
+  });
+} catch (error) {
+  console.log("something wrong with control layer");
+
+  return res.status(StatusCodes.BAD_REQUEST).json({
+    success: false,
+    message: "something wrong to get all books",
+    data: null,
+    err: error,
+  });
+}
+};
+
+export { createBook, getAllBooks, getBook, updateBook };

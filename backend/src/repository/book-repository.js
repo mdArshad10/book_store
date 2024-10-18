@@ -28,11 +28,24 @@ class BookRepository {
   async getById(id) {
     try {
       const book = await Book.findById(id);
-      
+
       return book;
     } catch (error) {
       console.log("something wrong with book repository layer");
       console.log(error);
+      throw { error };
+    }
+  }
+
+  async updated(bookId, data) {
+    try {
+      const book = await Book.findByIdAndUpdate(bookId, data, {
+        new: true,
+        runValidators: true,
+      });
+      return book;
+    } catch (error) {
+      console.log({ error });
       throw { error };
     }
   }
