@@ -1,4 +1,4 @@
-import { createApi } from "@reduxjs/toolkit/query";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
 import { BASIC_URL } from "../utils/basicURL.js";
 
 const baseQuery = fetchBaseQuery({
@@ -13,8 +13,8 @@ const baseQuery = fetchBaseQuery({
   },
 });
 
-export const basicAPi = createApi({
-  reducerPath: "basicApi",
+export const basicApi = createApi({
+  reducerPath: "book_store",
   baseQuery,
   tagTypes: ["Books"],
   keepUnusedDataFor: 30,

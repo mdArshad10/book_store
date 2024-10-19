@@ -1,6 +1,6 @@
-import { basicAPi } from "../../basicApi.js";
+import { basicApi } from "../../basicApi.js";
 
-export const bookApi = basicAPi.injectEndpoints({
+export const bookApi = basicApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllBooks: builder.query({
       query: () => ({
@@ -8,37 +8,39 @@ export const bookApi = basicAPi.injectEndpoints({
         method: "GET",
         keepUnusedDataFor: 5,
       }),
-      tagTypes: ["Books"],
+      providesTags: ["Books"],
     }),
     createBook: builder.mutation({
       query: (data) => ({
         url: "books",
         method: "POST",
         body: data,
-        keepUnusedDataFor: 5,
       }),
-      tagTypes: ["Books"],
+      invalidatesTags: ["Books"],
     }),
     updateBook: builder.mutation({
-      query: (id, data) => ({
+      query: ({ id, ...data }) => ({
         url: `books/edit/${id}`,
         method: "PUT",
         body: data,
       }),
-      tagTypes: ["Books"],
+      invalidatesTags: ["Books"],
     }),
     deleteBook: builder.mutation({
       query: (id) => ({
         url: `books/${id}`,
         method: "DELETE",
       }),
+      invalidatesTags: ["Books"],
+    }),
+    getBook: builder.query({
+      query: (id) => ({
+        url: `books/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["Books"],
     }),
   }),
 });
 
-export const {
-  useGetAllBooksQuery,
-  useCreateBookMutation,
-  useUpdateBookMutation,
-  useDeleteBookMutation,
-} = bookApi;
+
