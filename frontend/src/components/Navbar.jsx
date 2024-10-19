@@ -8,7 +8,7 @@ import {
 import { IoSearchOutline } from "react-icons/io5";
 import Avatar from "../assets/avatar.png";
 import { useState } from "react";
-import { bookApi} from "../redux/features/book/bookApi.js";
+import { useGetAllBooksQuery } from "../redux/features/book/bookApiSlice.js";
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard" },
@@ -21,11 +21,7 @@ const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const currentUser = false;
 
-  const {
-    data: post,
-    isFetching,
-    isLoading,
-  } = bookApi.useGetBookQuery("67112a513688f1b1b50bf43a");
+  const { data: post, isloading } = useGetAllBooksQuery();
   console.log(post);
 
   return (
@@ -54,7 +50,7 @@ const Navbar = () => {
           <div>
             {currentUser ? (
               <>
-                <button onClick={(e) => setIsDropdownOpen((prev) => !prev)}>
+                <button onClick={() => setIsDropdownOpen((prev) => !prev)}>
                   <img
                     src={Avatar}
                     alt="user"

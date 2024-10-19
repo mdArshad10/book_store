@@ -1,8 +1,8 @@
 import { basicApi } from "../../basicApi.js";
 
-export const bookApi = basicApi.injectEndpoints({
-  endpoints: (builder) => ({
-    getAllBooks: builder.query({
+const bookApiSlice = basicApi.injectEndpoints({
+  endpoints: (build) => ({
+    getAllBooks: build.query({
       query: () => ({
         url: "books",
         method: "GET",
@@ -10,7 +10,7 @@ export const bookApi = basicApi.injectEndpoints({
       }),
       providesTags: ["Books"],
     }),
-    createBook: builder.mutation({
+    createBook: build.mutation({
       query: (data) => ({
         url: "books",
         method: "POST",
@@ -18,7 +18,7 @@ export const bookApi = basicApi.injectEndpoints({
       }),
       invalidatesTags: ["Books"],
     }),
-    updateBook: builder.mutation({
+    updateBook: build.mutation({
       query: ({ id, ...data }) => ({
         url: `books/edit/${id}`,
         method: "PUT",
@@ -26,14 +26,14 @@ export const bookApi = basicApi.injectEndpoints({
       }),
       invalidatesTags: ["Books"],
     }),
-    deleteBook: builder.mutation({
+    deleteBook: build.mutation({
       query: (id) => ({
         url: `books/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Books"],
     }),
-    getBook: builder.query({
+    getBook: build.query({
       query: (id) => ({
         url: `books/${id}`,
         method: "GET",
@@ -43,4 +43,10 @@ export const bookApi = basicApi.injectEndpoints({
   }),
 });
 
-
+export const {
+  useGetAllBooksQuery,
+  useCreateBookMutation,
+  useGetBookQuery,
+  useDeleteBookMutation,
+  useUpdateBookMutation,
+} = bookApiSlice;

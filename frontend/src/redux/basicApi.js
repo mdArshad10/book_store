@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BASIC_URL } from "../utils/basicURL.js";
 
 const baseQuery = fetchBaseQuery({
@@ -18,5 +18,7 @@ export const basicApi = createApi({
   baseQuery,
   tagTypes: ["Books"],
   keepUnusedDataFor: 30,
-  endpoints: (builder) => ({}),
+  endpoints: () => ({}),
 });
+
+
