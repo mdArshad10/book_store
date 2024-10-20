@@ -20,6 +20,9 @@ const navigation = [
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const currentUser = false;
+  const cartItem = {
+    length: 5,
+  };
 
   return (
     <header className="max-w-screen-2xl mx-auto px-6 py-4">
@@ -92,7 +95,13 @@ const Navbar = () => {
             className="bg-primary p-1 flex items-center sm:px-6 py-2 gap-3 rounded-sm "
           >
             <HiOutlineShoppingCart className="size-5" />
-            <span className="text-sm font-semibold sm:ml-1">0</span>
+            {cartItem.length > 0 ? (
+              <span className="text-sm font-semibold sm:ml-1">
+                {cartItem.length}
+              </span>
+            ) : (
+              <span className="text-sm font-semibold sm:ml-1">0</span>
+            )}
           </Link>
         </div>
       </nav>
