@@ -21,9 +21,6 @@ const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const currentUser = false;
 
-  const { data: post, isloading } = useGetAllBooksQuery();
-  console.log(post);
-
   return (
     <header className="max-w-screen-2xl mx-auto px-6 py-4">
       <nav className="flex justify-between items-center">

@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "start": "node --env-file=.env src/server.js",
-    "server": "nodemon --env-file=.env src/server.js"
+    "server": "nodemon --env-file=.env src/server.js",
+    "insert:books": "node --env-file=.env src/setter.js  --insert",
+    "delete:books": "node --env-file=.env src/setter.js"
   },
   "keywords": [],
   "author": "",
