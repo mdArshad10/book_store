@@ -13,6 +13,9 @@ const Checkout = () => {
     formState: { errors },
   } = useForm();
   const cartItems = [];
+  const currentUser = {
+    email: "arshad@gmail.com",
+  };
 
   const totalPrice = 3000;
 
@@ -80,7 +83,7 @@ const Checkout = () => {
                     />
                   </div>
                   <div className="md:col-span-5">
-                    <label html="phone">Phone Number</label>
+                    <label htmlFor="phone">Phone Number</label>
                     <input
                       type="number"
                       {...register("phone", { required: true })}
